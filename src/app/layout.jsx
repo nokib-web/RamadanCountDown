@@ -20,14 +20,14 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://ramadan-countdown.vercel.app'),
+  metadataBase: new URL('https://ramadan-count-down-wheat.vercel.app'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "Ramadan Countdown 2026 | Count Down to the Holy Month",
     description: "Join millions in counting down to Ramadan 2026. Track the days until the blessed month of fasting, prayer, and reflection.",
-    url: 'https://ramadan-countdown.vercel.app',
+    url: 'https://ramadan-count-down-wheat.vercel.app',
     siteName: 'Ramadan Countdown',
     locale: 'en_US',
     type: 'website',
@@ -64,7 +64,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${montserrat.variable} font-sans`}>
+      <body className={`${montserrat.variable} font-sans`} suppressHydrationWarning>
         <Providers>{children}</Providers>
       </body>
     </html>

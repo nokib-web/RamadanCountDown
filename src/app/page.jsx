@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import OneSignalInitializer from "@/components/OneSignalInitializer";
 import Background from "@/components/Background";
 import CountdownTimer from "@/components/CountdownTimer";
 import SocialLinks from "@/components/SocialLinks";
 import ThemeToggle from "@/components/ThemeToggle";
+import NotificationButton from "@/components/NotificationButton";
 import IslamicDate from "@/components/IslamicDate";
 import InspirationalQuote from "@/components/InspirationalQuote";
 import ShareButton from "@/components/ShareButton";
@@ -15,8 +17,10 @@ export default function Home() {
 
   return (
     <main className="flex min-h-[100dvh] w-full flex-col items-center justify-between relative px-4 py-4 text-center font-sans transition-colors duration-500">
+      <OneSignalInitializer />
       <Background />
       <ThemeToggle />
+      <NotificationButton />
 
       {/* Top Spacer / Header Area */}
       <div className="flex-none pt-4 md:pt-8 w-full z-10 animate-fade-in-down">
