@@ -39,9 +39,18 @@ const NotificationButton = () => {
 
     const handleSubscribe = async () => {
         try {
-            await OneSignal.Slidedown.promptPush();
+            console.log("Attempting to subscribe...");
+            // Use the direct opt-in method which triggers the native browser prompt
+            await OneSignal.User.PushSubscription.optIn();
+            console.log("Opt-in requested");
         } catch (error) {
             console.error("Error subscribing to notifications:", error);
+            // Fallback for older browsers or if the SDK behaves differently
+            try {
+                await OneSignal.Slidedown.promptPush();
+            } catch (innerError) {
+                console.error("Fallback prompt failed:", innerError);
+            }
         }
     };
 
