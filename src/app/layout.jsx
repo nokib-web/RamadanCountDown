@@ -50,7 +50,9 @@ export const metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
   },
   manifest: '/site.webmanifest',
   themeColor: [
