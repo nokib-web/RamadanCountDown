@@ -1,0 +1,8 @@
+{
+    "name": "Ramadan Countdown",
+    "short_name": "Ramadan",
+    "start_url": "/",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}

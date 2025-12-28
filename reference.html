@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Coming Soon Countdown Page</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&amp;display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#FFFFFF", // White as primary text color mostly
+            "background-light": "#0f172a", // Deep blue/slate for light mode fallback (simulating space)
+            "background-dark": "#020617", // Darker slate for dark mode
+            accent: "#38bdf8", // Light blue accent
+          },
+          fontFamily: {
+            display: ["Montserrat", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            "full": "9999px",
+          },
+          backgroundImage: {
+            'space-pattern': "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')",
+          }
+        },
+      },
+    };
+  </script>
+  <style>
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body class="font-display min-h-screen bg-background-light dark:bg-background-dark text-white overflow-x-hidden">
+  <div class="fixed inset-0 z-0">
+    <div class="absolute inset-0 bg-space-pattern bg-cover bg-center bg-no-repeat opacity-80 dark:opacity-60"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/90"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/40 via-transparent to-transparent"></div>
+  </div>
+  <main
+    class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-12 text-center w-full max-w-lg mx-auto">
+    <div class="mb-12 space-y-4 animate-fade-in-down">
+      <h2 class="text-3xl font-bold tracking-widest uppercase text-white drop-shadow-lg sm:text-4xl">
+        We Are
+      </h2>
+      <h1 class="text-4xl font-extrabold uppercase leading-tight text-white drop-shadow-xl sm:text-5xl lg:text-6xl">
+        Launching<br />Very Soon
+      </h1>
+      <p class="mt-6 text-base font-medium text-gray-300 max-w-xs mx-auto sm:text-lg sm:max-w-md">
+        We are working on our new features! We will be ready soon.
+      </p>
+    </div>
+    <div class="w-full mb-16">
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-6">
+        <div class="flex flex-col items-center px-2 sm:px-4">
+          <span class="text-5xl font-bold text-white sm:text-6xl tabular-nums drop-shadow-md">10</span>
+          <span class="mt-2 text-sm font-medium uppercase tracking-wider text-gray-300">Days</span>
+        </div>
+        <div class="h-12 w-px bg-gray-500/50 hidden sm:block"></div>
+        <div class="flex flex-col items-center px-2 sm:px-4">
+          <span class="text-5xl font-bold text-white sm:text-6xl tabular-nums drop-shadow-md">22</span>
+          <span class="mt-2 text-sm font-medium uppercase tracking-wider text-gray-300">Hours</span>
+        </div>
+        <div class="h-12 w-px bg-gray-500/50 hidden sm:block"></div>
+        <div class="flex flex-col items-center px-2 sm:px-4">
+          <span class="text-5xl font-bold text-white sm:text-6xl tabular-nums drop-shadow-md">48</span>
+          <span class="mt-2 text-sm font-medium uppercase tracking-wider text-gray-300">Minutes</span>
+        </div>
+        <div class="h-12 w-px bg-gray-500/50 hidden sm:block"></div>
+        <div class="flex flex-col items-center px-2 sm:px-4">
+          <span class="text-5xl font-bold text-white sm:text-6xl tabular-nums drop-shadow-md">06</span>
+          <span class="mt-2 text-sm font-medium uppercase tracking-wider text-gray-300">Seconds</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-center space-x-6 mb-10">
+      <a class="text-white hover:text-accent transition-colors duration-300 transform hover:scale-110" href="#">
+        <i class="fab fa-facebook text-3xl"></i>
+      </a>
+      <a class="text-white hover:text-accent transition-colors duration-300 transform hover:scale-110" href="#">
+        <i class="fab fa-twitter text-3xl"></i>
+      </a>
+      <a class="text-white hover:text-accent transition-colors duration-300 transform hover:scale-110" href="#">
+        <i class="fab fa-linkedin text-3xl"></i>
+      </a>
+      <a class="text-white hover:text-accent transition-colors duration-300 transform hover:scale-110" href="#">
+        <i class="fab fa-whatsapp text-3xl"></i>
+      </a>
+      <a class="text-white hover:text-accent transition-colors duration-300 transform hover:scale-110" href="#">
+        <i class="fab fa-instagram text-3xl"></i>
+      </a>
+    </div>
+    <button
+      class="px-8 py-3 text-sm font-semibold tracking-wide text-white uppercase transition-all duration-300 border-2 border-white rounded hover:bg-white hover:text-background-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white bg-transparent glass-panel">
+      Learn More About Us
+    </button>
+  </main>
+  <script>
+    // Very basic countdown simulation logic just to show movement
+    const secondsEl = document.querySelector('div:last-child span.text-5xl');
+    let seconds = 6;
+    setInterval(() => {
+      seconds--;
+      if (seconds < 0) seconds = 59;
+      if (secondsEl) secondsEl.innerText = seconds < 10 ? `0${seconds}` : seconds;
+    }, 1000);
+  </script>
+
+</body>
+
+</html>
