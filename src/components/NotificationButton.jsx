@@ -37,19 +37,22 @@ const NotificationButton = () => {
         return () => clearTimeout(timeoutId);
     }, []);
 
-    const handleSubscribe = async () => {
+    const handleToggle = async () => {
         try {
-            console.log("Attempting to subscribe...");
-            // Use the direct opt-in method which triggers the native browser prompt
-            await OneSignal.User.PushSubscription.optIn();
-            console.log("Opt-in requested");
+            if (isSubscribed) {
+                console.log("Opting out...");
+                await OneSignal.User.PushSubscription.optOut();
+            } else {
+                console.log("Attempting to subscribe...");
+                await OneSignal.User.PushSubscription.optIn();
+            }
         } catch (error) {
-            console.error("Error subscribing to notifications:", error);
-            // Fallback for older browsers or if the SDK behaves differently
-            try {
-                await OneSignal.Slidedown.promptPush();
-            } catch (innerError) {
-                console.error("Fallback prompt failed:", innerError);
+            console.error("Error toggling notifications:", error);
+            // Fallback for subscribing only
+            if (!isSubscribed) {
+                try {
+                    await OneSignal.Slidedown.promptPush();
+                } catch (inner) { console.error("Fallback failed", inner); }
             }
         }
     };
@@ -58,20 +61,19 @@ const NotificationButton = () => {
 
     return (
         <button
-            onClick={handleSubscribe}
+            onClick={handleToggle}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            disabled={isSubscribed}
             className={`
                 fixed top-6 left-6 z-50 p-3 rounded-full 
                 backdrop-blur-md border transition-all duration-300 shadow-lg group
                 ${isSubscribed
-                    ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400 cursor-default"
-                    : "bg-white/10 border-white/20 hover:bg-white/20 text-slate-800 dark:text-white cursor-pointer"
+                    ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400 hover:bg-red-500/10 hover:border-red-500/20 hover:text-red-500"
+                    : "bg-white/10 border-white/20 hover:bg-white/20 text-slate-800 dark:text-white"
                 }
             `}
-            aria-label="Enable Notifications"
-            title={isSubscribed ? "Notifications Enabled" : "Enable Daily Reminders"}
+            aria-label={isSubscribed ? "Disable Notifications" : "Enable Notifications"}
+            title={isSubscribed ? "Click to Disable Daily Reminders" : "Enable Daily Reminders"}
         >
             {isSubscribed ? (
                 <Bell className="w-6 h-6 fill-current" />
