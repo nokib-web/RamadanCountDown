@@ -29,7 +29,7 @@ const NotificationButton = () => {
                     });
                 }
             } catch (e) {
-                console.log("OneSignal not ready yet", e);
+                // OneSignal not ready yet, silently ignore
             }
         };
 
@@ -40,10 +40,8 @@ const NotificationButton = () => {
     const handleToggle = async () => {
         try {
             if (isSubscribed) {
-                console.log("Opting out...");
                 await OneSignal.User.PushSubscription.optOut();
             } else {
-                console.log("Attempting to subscribe...");
                 await OneSignal.User.PushSubscription.optIn();
             }
         } catch (error) {
@@ -65,7 +63,8 @@ const NotificationButton = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             className={`
-                fixed top-6 left-6 z-50 p-3 rounded-full 
+                fixed top-3 left-3 sm:top-4 sm:left-4 md:top-6 md:left-6 z-50
+                min-w-[44px] min-h-[44px] p-3 rounded-full 
                 backdrop-blur-md border transition-all duration-300 shadow-lg group
                 ${isSubscribed
                     ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400 hover:bg-red-500/10 hover:border-red-500/20 hover:text-red-500"
@@ -80,8 +79,6 @@ const NotificationButton = () => {
             ) : (
                 <div className="relative">
                     <Bell className={`w-6 h-6 ${isHovered ? 'animate-swing' : ''}`} />
-                    <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full animate-ping" />
-                    <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full" />
                 </div>
             )}
         </button>

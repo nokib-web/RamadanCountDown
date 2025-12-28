@@ -9,10 +9,22 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Ramadan Countdown 2026 — Days Until the Holy Month",
-  description: "Track the days, hours, minutes, and seconds until Ramadan 2026. Includes the Islamic calendar, inspirational Quranic verses, and helpful context.",
-  keywords: ["Ramadan", "Ramadan 2026", "Islamic Calendar", "Ramadan Countdown", "Muslim", "Fasting", "Quran", "Hadith", "Islamic Months", "Hijri Calendar"],
-  authors: [{ name: "Ramadan Countdown" }],
+  title: "Ramadan Countdown 2026 | Days Left Until Ramadan",
+  description: "Count down the days, hours, and minutes until Ramadan 2026. Get accurate Islamic dates, daily inspiration, and prepare for the holy month of fasting.",
+  keywords: [
+    "Ramadan 2026",
+    "Ramadan Countdown",
+    "Days until Ramadan",
+    "When is Ramadan 2026",
+    "Islamic Calendar",
+    "Muslim Fasting",
+    "Hijri Date",
+    "Ramadan Kareem",
+    "Eid al-Fitr",
+    "Ramadan 1447",
+    "Islamic Holy Month"
+  ],
+  authors: [{ name: "Ramadan Countdown Team" }],
   creator: "Ramadan Countdown",
   publisher: "Ramadan Countdown",
   formatDetection: {
@@ -25,18 +37,27 @@ export const metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Ramadan Countdown 2026 | Count Down to the Holy Month",
-    description: "Join millions in counting down to Ramadan 2026. Track the days until the blessed month of fasting, prayer, and reflection.",
+    title: "Ramadan Countdown 2026 | Days Left Until the Holy Month",
+    description: "Join functionality for millions counting down to Ramadan 2026. Track time remaining, view Islamic dates, and get daily inspiration.",
     url: 'https://ramadan-count-down-wheat.vercel.app',
-    siteName: 'Ramadan Countdown',
+    siteName: 'Ramadan Countdown 2026',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png', // Ensure you have an og-image.png in public folder or use a remote URL
+        width: 1200,
+        height: 630,
+        alt: 'Ramadan Countdown 2026 Preview',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Ramadan Countdown 2026 | Count Down to the Holy Month",
-    description: "Join millions in counting down to Ramadan 2026. Track the days until the blessed month.",
+    title: "Ramadan Countdown 2026 | Days Left Until Ramadan",
+    description: "Track the days, hours, and minutes until the holy month of Ramadan 2026 begins.",
     creator: '@ramadancountdown',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -52,13 +73,25 @@ export const metadata = {
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }, // Fallback
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png' }, // Ensure this exists if possible, or browsers might 404
     ],
   },
   manifest: '/site.webmanifest',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f8fafc' },
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
   ],
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5, // Allow zooming for accessibility
+  },
+  verification: {
+    google: 'google-site-verification=YOUR_VERIFICATION_CODE', // Placeholder
+  },
 };
 
 export default function RootLayout({ children }) {

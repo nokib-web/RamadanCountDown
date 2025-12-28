@@ -16,66 +16,57 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <main className="flex min-h-[100dvh] w-full flex-col items-center justify-between relative px-4 py-4 text-center font-sans transition-colors duration-500">
+    <main className="flex min-h-[100dvh] w-full flex-col items-center justify-between relative px-3 py-3 sm:px-4 sm:py-4 text-center font-sans transition-colors duration-500">
       <OneSignalInitializer />
       <Background />
       <ThemeToggle />
       <NotificationButton />
 
-      {/* Top Spacer / Header Area */}
-      <div className="flex-none pt-4 md:pt-8 w-full z-10 animate-fade-in-down">
-        <h2 className="text-sm sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase text-slate-800 dark:text-white drop-shadow-sm transition-colors duration-300 mb-1 sm:mb-2">
+      {/* Header Area */}
+      <div className="flex-none pt-3 sm:pt-4 md:pt-8 w-full z-10 animate-fade-in-down">
+        <h2 className="text-xs sm:text-sm md:text-lg font-bold tracking-[0.25em] sm:tracking-[0.3em] uppercase text-slate-800 dark:text-white drop-shadow-sm transition-colors duration-300 mb-1">
           Upcoming
         </h2>
-        <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold uppercase leading-none text-slate-900 dark:text-white drop-shadow-xl transition-colors duration-300">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold uppercase leading-none text-slate-900 dark:text-white drop-shadow-xl transition-colors duration-300">
           Ramadan<br />Kareem
         </h1>
-        <p className="hidden sm:block mt-2 sm:mt-4 text-xs sm:text-base md:text-xl text-slate-600 dark:text-gray-300 max-w-2xl mx-auto font-light leading-relaxed transition-colors duration-300 px-4">
+        <p className="mt-2 sm:mt-3 md:mt-4 text-xs sm:text-sm md:text-base lg:text-xl text-slate-600 dark:text-gray-300 max-w-2xl mx-auto font-light leading-relaxed transition-colors duration-300 px-2 sm:px-4">
           The month of mercy, forgiveness, and blessings.
         </p>
 
-
-        {/* Middle Area: Countdown - Grows to fill space */}
-        <div className="flex-grow flex items-center justify-center w-full z-10 py-2">
-          <div className="w-full transform scale-90 sm:scale-100 lg:scale-110 transition-transform duration-500">
+        {/* Countdown Timer */}
+        <div className="flex-grow flex items-center justify-center w-full z-10 py-3 sm:py-4 md:py-6">
+          <div className="w-full">
             <CountdownTimer />
           </div>
         </div>
 
         {/* Islamic Date Display */}
-        <div className="mt-4 flex justify-center">
+        <div className="mt-3 sm:mt-4 flex justify-center">
           <IslamicDate />
         </div>
       </div>
 
-
-      {/* Inspirational Quote Section */}
-      <div className="flex-none w-full max-w-4xl mx-auto z-10 mb-4 px-2">
-        {/* <InspirationalQuote /> */}
-      </div>
-
-      {/* Bottom Area: Footer/Social - Fixed size at bottom */}
-      <div className="flex-none flex flex-col items-center gap-3 sm:gap-6 z-10 pb-2 sm:pb-6">
-
-
+      {/* Bottom Area: Actions */}
+      <div className="flex-none flex flex-col items-center gap-4 sm:gap-6 z-10 pb-3 sm:pb-4 md:pb-6 mt-4">
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-6 py-2 sm:px-10 sm:py-4 text-xs sm:text-sm font-bold tracking-widest text-slate-900 dark:text-white uppercase transition-all duration-300 border-2 border-slate-900 dark:border-white rounded hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 dark:focus:ring-white bg-transparent"
+            className="min-h-[44px] px-6 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-sm font-bold tracking-widest text-slate-900 dark:text-white uppercase transition-all duration-300 border-2 border-slate-900 dark:border-white rounded hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 dark:focus:ring-white bg-transparent"
           >
             Learn More
           </button>
 
           <ShareButton />
         </div>
+
+        <div className="text-slate-700 dark:text-white transition-colors duration-300">
+          <SocialLinks />
+        </div>
       </div>
 
       {/* Learn More Modal */}
       <LearnMoreModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-
-      <div className="text-slate-700 dark:text-white transition-colors duration-300 scale-75 sm:scale-100">
-        <SocialLinks />
-      </div>
     </main>
   );
 }

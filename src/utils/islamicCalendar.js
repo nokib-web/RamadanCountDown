@@ -36,37 +36,34 @@ export function getNextRamadanDate() {
 }
 
 /**
- * Convert Gregorian date to Islamic date (Hijri)
- * This is a simplified approximation
+ * Convert Gregorian date to Islamic date (Hijri) using Intl.DateTimeFormat
  * @param {Date} date - Gregorian date
  * @returns {Object} Islamic date with year, month, and day
  */
 export function gregorianToHijri(date = new Date()) {
-    // This is a simplified calculation
-    // For production, use a proper Islamic calendar library or API
-    const gregorianYear = date.getFullYear();
-    const gregorianMonth = date.getMonth() + 1;
-    const gregorianDay = date.getDate();
+    const formatter = new Intl.DateTimeFormat('en-US-u-ca-islamic-umalqura', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
 
-    // Approximate conversion (not accurate, just for display)
-    // Islamic year is approximately 11 days shorter
-    const hijriYear = Math.floor((gregorianYear - 622) * 1.030684);
+    const parts = formatter.formatToParts(date);
+    const dayPart = parts.find(p => p.type === 'day').value;
+    const monthPart = parts.find(p => p.type === 'month').value;
+    const yearPart = parts.find(p => p.type === 'year').value;
 
-    const islamicMonths = [
-        'Muharram', 'Safar', 'Rabi al-Awwal', 'Rabi al-Thani',
-        'Jumada al-Awwal', 'Jumada al-Thani', 'Rajab', 'Shaban',
-        'Ramadan', 'Shawwal', 'Dhul-Qadah', 'Dhul-Hijjah'
-    ];
-
-    // Simplified month calculation
-    const monthIndex = (gregorianMonth + Math.floor(hijriYear % 12)) % 12;
+    // Extract numeric values if needed, though parts are strings
+    // 'numeric' year usually comes as "1447 AH" or similar depending on locale, 
+    // but with the customization it's mostly "1447"
+    const year = parseInt(yearPart.split(' ')[0]);
 
     return {
-        year: hijriYear,
-        month: islamicMonths[monthIndex],
-        monthNumber: monthIndex + 1,
-        day: gregorianDay,
-        formatted: `${gregorianDay} ${islamicMonths[monthIndex]} ${hijriYear} AH`
+        year: year,
+        month: monthPart,
+        // Month number isn't directly available from this formatter easily without parsing
+        // but for display purposes the name is better.
+        day: parseInt(dayPart),
+        formatted: `${dayPart} ${monthPart} ${yearPart}`
     };
 }
 
