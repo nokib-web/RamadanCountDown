@@ -43,7 +43,7 @@ export function getNextRamadanDate() {
 export function gregorianToHijri(date = new Date()) {
     const formatter = new Intl.DateTimeFormat('en-US-u-ca-islamic-umalqura', {
         day: 'numeric',
-        month: 'long',
+        month: 'numeric',
         year: 'numeric'
     });
 
@@ -52,18 +52,23 @@ export function gregorianToHijri(date = new Date()) {
     const monthPart = parts.find(p => p.type === 'month').value;
     const yearPart = parts.find(p => p.type === 'year').value;
 
-    // Extract numeric values if needed, though parts are strings
-    // 'numeric' year usually comes as "1447 AH" or similar depending on locale, 
-    // but with the customization it's mostly "1447"
+    const islamicMonths = [
+        "Muharram", "Safar", "Rabi Al-Awwal", "Rabi Al-Thani",
+        "Jumada Al-Awwal", "Jumada Al-Thani", "Rajab", "Sha'ban",
+        "Ramadan", "Shawwal", "Dhul-Qi'dah", "Dhul-Hijjah"
+    ];
+
+    // Extract numeric values
     const year = parseInt(yearPart.split(' ')[0]);
+    const monthIndex = parseInt(monthPart) - 1; // 0-based index
+    const monthName = islamicMonths[monthIndex] || monthPart;
+    const day = parseInt(dayPart);
 
     return {
         year: year,
-        month: monthPart,
-        // Month number isn't directly available from this formatter easily without parsing
-        // but for display purposes the name is better.
-        day: parseInt(dayPart),
-        formatted: `${dayPart} ${monthPart} ${yearPart}`
+        month: monthName,
+        day: day,
+        formatted: `${day} ${monthName} ${year}`
     };
 }
 
