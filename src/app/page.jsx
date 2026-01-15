@@ -23,7 +23,7 @@ export default function Home() {
       <NotificationButton />
 
       {/* Header Area */}
-      <div className="flex-none pt-3 sm:pt-4 md:pt-8 w-full z-10 animate-fade-in-down">
+      <div className="flex-none pt-10 sm:pt-4 md:pt-8 w-full z-10 animate-fade-in-down">
         <h2 className="text-xs sm:text-sm md:text-lg font-bold tracking-[0.25em] sm:tracking-[0.3em] uppercase text-slate-800 dark:text-white drop-shadow-sm transition-colors duration-300 mb-1">
           Upcoming
         </h2>
@@ -46,13 +46,16 @@ export default function Home() {
           <IslamicDate />
         </div>
       </div>
+      <div className="mt-4">
+        {/* <InspirationalQuote /> */}
+      </div>
 
       {/* Bottom Area: Actions */}
       <div className="flex-none flex flex-col items-center gap-4 sm:gap-6 z-10 pb-3 sm:pb-4 md:pb-6 mt-4">
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="min-h-[44px] px-6 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-sm font-bold tracking-widest text-slate-900 dark:text-white uppercase transition-all duration-300 border-2 border-slate-900 dark:border-white rounded hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 dark:focus:ring-white bg-transparent"
+            className="min-h-11 px-6 py-2.5 sm:px-8 sm:py-3 text-xs sm:text-sm font-bold tracking-widest text-slate-900 dark:text-white uppercase transition-all duration-300 border-2 border-slate-900 dark:border-white rounded hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 dark:focus:ring-white bg-transparent"
           >
             Learn More
           </button>
